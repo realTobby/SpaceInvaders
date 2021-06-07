@@ -1,5 +1,3 @@
 @echo off
-
-cd D:\Programmierung\SpaceInvaders
-g++ D:\Programmierung\SpaceInvaders\src\*.cpp -o D:\Programmierung\SpaceInvaders\build\spaceinvaders.exe
+g++ D:\Programmierung\SpaceInvaders\src\*.cpp -o D:\Programmierung\SpaceInvaders\build\spaceinvaders.exe -Iinclude -lsfml-graphics -lsfml-window -lsfml-system
 pause
