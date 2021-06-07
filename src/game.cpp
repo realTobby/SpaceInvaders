@@ -16,6 +16,7 @@ class Game
         sf::Vector2f starLayer1[100];
         sf::Vector2f starLayer2[100];
         sf::Vector2f starLayer3[100];
+        sf::Vector2f enemyPositions[10];
 
         sf::Vector2f playerPosition = sf::Vector2f(400.f,500.f);
 
@@ -113,6 +114,26 @@ class Game
             mainWindow.draw(playerShape);
         }
 
+        void SpawnEnemies()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                enemyPositions[i].x = 25 + i * 48;
+                enemyPositions[i].y = 10;
+            }
+        }
+
+        void DrawEnemies()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                sf::RectangleShape enemyShape(sf::Vector2f(32.f,32.f));
+                enemyShape.setFillColor(sf::Color::Red);
+                enemyShape.setPosition(enemyPositions[i]);
+                mainWindow.draw(enemyShape);
+            }
+        }
+
 
     public:
         Game()
@@ -133,6 +154,8 @@ class Game
                 starLayer3[i].x = rand() % 800 + 1;
                 starLayer3[i].y = rand() % 600 + 1;
             }
+
+            SpawnEnemies();
 
         }
 
@@ -157,6 +180,7 @@ class Game
 
                     Starfield();
                     DrawPlayer();
+                    DrawEnemies();
                     PlayerMove();
 
                     moveShoot();
