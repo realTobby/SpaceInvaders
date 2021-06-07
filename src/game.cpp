@@ -99,7 +99,7 @@ class Game
                 //cout << "Move Right..." << endl;
                 playerPosition.x = playerPosition.x + 0.09f;
             }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canShoot == true)
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canShoot == true)
             {
                 shoot();
             }
