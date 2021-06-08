@@ -219,7 +219,7 @@ class Game
 					enemyAnchorPosition.x = 1.f;
 					enemySpeed = enemySpeed + 0.004f;
 				}
-				SpawnEnemies();
+                enemies[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
             }
         }
 };
