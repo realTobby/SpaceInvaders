@@ -24,7 +24,7 @@ class Game
         bool canShoot = true;
         sf::Vector2f shotPosition = sf::Vector2f(playerPosition.x, playerPosition.y);
 		bool enemiesMoveRight = true;
-
+		float enemySpeed = 0.007f;
         void Starfield()
         {
             // create basic star shape
@@ -135,21 +135,23 @@ class Game
                 mainWindow.draw(enemyShape);
 				
 				if(enemiesMoveRight == true)
-					enemyAnchorPosition.x = enemyAnchorPosition.x + 0.007f;
+					enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
 				if(enemyAnchorPosition.x > 350.f)
 				{
 					enemiesMoveRight = false;
 					enemyAnchorPosition.y += 16.f;
 					enemyAnchorPosition.x = 349.f;
+					enemySpeed = enemySpeed + 0.004f;
 				}
 				
 				if(enemiesMoveRight == false)
-					enemyAnchorPosition.x = enemyAnchorPosition.x - 0.007f;
+					enemyAnchorPosition.x = enemyAnchorPosition.x - enemySpeed;
 				if(enemyAnchorPosition.x < 0.f)
 				{
 					enemiesMoveRight = true;
 					enemyAnchorPosition.y += 16.f;
 					enemyAnchorPosition.x = 1.f;
+					enemySpeed = enemySpeed + 0.004f;
 				}
 				
 				
