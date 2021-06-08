@@ -12,9 +12,8 @@ all: spaceinvaders
 
 spaceinvaders: enemy.o main.o game.o
 	echo "** Building the game"
-	$(CXX) -o builds\spaceinvaders enemy.o main.o game.o $(LIBS)
-	cp *.o builds
-	rm -f *.o
+	$(CXX) -o builds\spaceinvaders builds\enemy.o builds\main.o builds\game.o $(LIBS)
+
 
 clean:
 	@echo "** Removing object files and executable..."
