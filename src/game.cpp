@@ -17,11 +17,13 @@ class Game
         sf::Vector2f starLayer2[100];
         sf::Vector2f starLayer3[100];
         sf::Vector2f enemyPositions[10];
+		sf::Vector2f enemyAnchorPosition;
 
         sf::Vector2f playerPosition = sf::Vector2f(400.f,500.f);
 
         bool canShoot = true;
         sf::Vector2f shotPosition = sf::Vector2f(playerPosition.x, playerPosition.y);
+		bool enemiesMoveRight = true;
 
         void Starfield()
         {
@@ -118,8 +120,8 @@ class Game
         {
             for(int i = 0; i < 10; i++)
             {
-                enemyPositions[i].x = 25 + i * 48;
-                enemyPositions[i].y = 10;
+                enemyPositions[i].x = enemyAnchorPosition.x + i * 48;
+                enemyPositions[i].y = enemyAnchorPosition.y;
             }
         }
 
@@ -131,7 +133,31 @@ class Game
                 enemyShape.setFillColor(sf::Color::Red);
                 enemyShape.setPosition(enemyPositions[i]);
                 mainWindow.draw(enemyShape);
+				
+				if(enemiesMoveRight == true)
+					enemyAnchorPosition.x = enemyAnchorPosition.x + 0.007f;
+				if(enemyAnchorPosition.x > 350.f)
+				{
+					enemiesMoveRight = false;
+					enemyAnchorPosition.y += 16.f;
+					enemyAnchorPosition.x = 349.f;
+				}
+				
+				if(enemiesMoveRight == false)
+					enemyAnchorPosition.x = enemyAnchorPosition.x - 0.007f;
+				if(enemyAnchorPosition.x < 0.f)
+				{
+					enemiesMoveRight = true;
+					enemyAnchorPosition.y += 16.f;
+					enemyAnchorPosition.x = 1.f;
+				}
+				
+				
+				
+				SpawnEnemies();
             }
+				
+				
         }
 
 
@@ -142,6 +168,8 @@ class Game
 
             mainWindow.create(sf::VideoMode(800,600),"Space Invaders");
             isWindowInitialized = true;
+
+			enemyAnchorPosition = sf::Vector2f(25.f, 25.f);
 
             for(int i = 0; i < 100; i++)
             {
