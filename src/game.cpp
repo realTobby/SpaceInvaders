@@ -11,7 +11,7 @@ using namespace std;
 class Game
 {
     private:
-        sf::RenderWindow tmpWind;
+        sf::RenderWindow renderWindow;
         sf::RenderWindow *ptrWindow;
         bool isWindowInitialized = false;
         sf::Vector2f starLayer1[100];
@@ -24,14 +24,16 @@ class Game
         sf::Vector2f shotPosition = sf::Vector2f(playerPosition.x, playerPosition.y);
         bool enemiesMoveRight = true;
         float enemySpeed = 0.007f;
-        
+        sf::Texture enemyTexture;
+        sf::Texture *ptrEnemyTexture;
+
     public:
         Game()
         {
             srand (time(NULL));
             
-            tmpWind.create(sf::VideoMode(800,600),"Space Invaders");
-            ptrWindow = &tmpWind;
+            renderWindow.create(sf::VideoMode(800,600),"Space Invaders");
+            ptrWindow = &renderWindow;
             isWindowInitialized = true;
 
             enemyAnchorPosition = sf::Vector2f(25.f, 25.f);
@@ -179,10 +181,16 @@ class Game
 
         void SpawnEnemies()
         {
+            if (!enemyTexture.loadFromFile("assets/alien1.png"))
+            {
+                // error...
+            }
+            ptrEnemyTexture = &enemyTexture;
+
             for(int i = 0; i < 10; i++)
             {
-                enemies[i].Spawn(ptrWindow);
-                enemies[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 48, enemyAnchorPosition.y));
+                enemies[i].Spawn(ptrWindow, ptrEnemyTexture);
+                enemies[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
             }
         }
 

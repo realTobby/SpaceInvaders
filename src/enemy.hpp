@@ -6,12 +6,13 @@ class EnemyModel
 {
 	private:
 		sf::RenderWindow *windowPointer;
+		sf::Texture *ptrTexture;
 		sf::Vector2f Position;
-		sf::RectangleShape enemyShape;
+		sf::Sprite sprite;
 
 	public:
 		EnemyModel();
-		void Spawn(sf::RenderWindow *ptrWindow);
+		void Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture);
 		void Draw();
 		sf::Vector2f GetPosition();
 		void SetPosition(sf::Vector2f pos);
