@@ -130,7 +130,6 @@ class Game
             for(int i = 0; i < 10; i++)
             {
                 enemies[i].Draw();
-                //ptrWindow -> draw(enemyShape);
 				
 				if(enemiesMoveRight == true)
 					enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
