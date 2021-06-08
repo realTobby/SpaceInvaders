@@ -11,12 +11,17 @@ all: spaceinvaders
 	$(CXX) -c $< -o $@
 
 spaceinvaders: main.o game.o
-	@echo "** Building the game"
-	$(CXX) -o spaceinvaders main.o game.o $(LIBS)
+	make clean
+	echo "** Building the game"
+	$(CXX) -o builds\spaceinvaders main.o game.o $(LIBS)
+	cp *.o builds
+	rm -f *.o
 
 clean:
 	@echo "** Removing object files and executable..."
-	rm -f spaceinvaders *.o
+	rm -f builds\spaceinvaders
+	rm -f builds\game.o
+	rm -f builds\main.o
 
 install:
 	@echo '** Installing...'
