@@ -129,9 +129,7 @@ class Game
         {
             for(int i = 0; i < 10; i++)
             {
-                sf::RectangleShape enemyShape(sf::Vector2f(32.f,32.f));
-                enemyShape.setFillColor(sf::Color::Red);
-                enemyShape.setPosition(enemies[i].GetPosition());
+                enemies[i].Draw();
                 //ptrWindow -> draw(enemyShape);
 				
 				if(enemiesMoveRight == true)

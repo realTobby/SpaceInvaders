@@ -13,7 +13,7 @@ EnemyModel::EnemyModel()
 void EnemyModel::Spawn(sf::RenderWindow *ptrWindow)
 {
 	windowPointer = ptrWindow;
-	sf::RectangleShape enemyShape = sf::RectangleShape(sf::Vector2f(32.f,32.f));
+	enemyShape = sf::RectangleShape(sf::Vector2f(32.f,32.f));
 	enemyShape.setFillColor(sf::Color::Red);
     
 }
