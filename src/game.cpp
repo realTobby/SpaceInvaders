@@ -10,7 +10,68 @@ using namespace std;
 
 class Game
 {
+    public:
+        Game()
+        {
+            srand (time(NULL));
+            
+            tmpWind.create(sf::VideoMode(800,600),"Space Invaders");
+            ptrWindow = &tmpWind;
+            isWindowInitialized = true;
+
+            enemyAnchorPosition = sf::Vector2f(25.f, 25.f);
+
+            for(int i = 0; i < 100; i++)
+            {
+                starLayer1[i].x = rand() % 800 + 1;
+                starLayer1[i].y = rand() % 600 + 1;
+
+                starLayer2[i].x = rand() % 800 + 1;
+                starLayer2[i].y = rand() % 600 + 1;
+
+                starLayer3[i].x = rand() % 800 + 1;
+                starLayer3[i].y = rand() % 600 + 1;
+            }
+
+            SpawnEnemies();
+
+        }
+
+        void GameLoop() 
+        {
+            cout << "GameLoop called!" << endl;
+            cout << "GameLoop starts..." << endl;
+
+            if(isWindowInitialized == true)
+            {
+                while (ptrWindow -> isOpen())
+                {
+                    sf::Event event;
+                    while (ptrWindow -> pollEvent(event))
+                    {
+                        if (event.type == sf::Event::Closed)
+                            ptrWindow -> close();
+
+                    }
+
+                    ptrWindow -> clear();
+
+                    Starfield();
+                    DrawPlayer();
+                    DrawEnemies();
+                    PlayerMove();
+
+                    moveShoot();
+
+                    ptrWindow -> display();
+                }
+            }
+            
+            cout << "GameLoop ended!" << endl;
+        }
+
     private:
+        sf::RenderWindow tmpWind;
         sf::RenderWindow *ptrWindow;
         bool isWindowInitialized = false;
         sf::Vector2f starLayer1[100];
@@ -150,78 +211,9 @@ class Game
 					enemyAnchorPosition.x = 1.f;
 					enemySpeed = enemySpeed + 0.004f;
 				}
-				
-				
-				
 				SpawnEnemies();
             }
-				
-				
         }
-
-    private:
-        sf::RenderWindow tmpWind;
-
-    public:
-        Game()
-        {
-            srand (time(NULL));
-            
-            tmpWind.create(sf::VideoMode(800,600),"Space Invaders");
-            ptrWindow = &tmpWind;
-            isWindowInitialized = true;
-
-			enemyAnchorPosition = sf::Vector2f(25.f, 25.f);
-
-            for(int i = 0; i < 100; i++)
-            {
-                starLayer1[i].x = rand() % 800 + 1;
-                starLayer1[i].y = rand() % 600 + 1;
-
-                starLayer2[i].x = rand() % 800 + 1;
-                starLayer2[i].y = rand() % 600 + 1;
-
-                starLayer3[i].x = rand() % 800 + 1;
-                starLayer3[i].y = rand() % 600 + 1;
-            }
-
-            SpawnEnemies();
-
-        }
-
-        void GameLoop() 
-        {
-            cout << "GameLoop called!" << endl;
-            cout << "GameLoop starts..." << endl;
-
-            if(isWindowInitialized == true)
-            {
-                while (ptrWindow -> isOpen())
-                {
-                    sf::Event event;
-                    while (ptrWindow -> pollEvent(event))
-                    {
-                        if (event.type == sf::Event::Closed)
-                            ptrWindow -> close();
-
-                    }
-
-                    ptrWindow -> clear();
-
-                    Starfield();
-                    DrawPlayer();
-                    DrawEnemies();
-                    PlayerMove();
-
-                    moveShoot();
-
-                    ptrWindow -> display();
-                }
-            }
-            
-            cout << "GameLoop ended!" << endl;
-        }
-
 };
 
 
