@@ -5,6 +5,7 @@
 class EnemyModel
 {
 	private:
+		sf::RenderWindow *windowPointer;
 		sf::Vector2f Position;
 
 	public:

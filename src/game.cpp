@@ -11,7 +11,7 @@ using namespace std;
 class Game
 {
     private:
-        sf::RenderWindow mainWindow;
+        sf::RenderWindow *mainWindow;
         bool isWindowInitialized = false;
         sf::Vector2f starLayer1[100];
         sf::Vector2f starLayer2[100];
@@ -41,7 +41,7 @@ class Game
                     starLayer1[i].x = rand() % 800 + 1;
                     starLayer1[i].y = 600;
                 }
-                mainWindow.draw(shape);
+                mainWindow -> draw(shape);
 
                 shape.setPosition(starLayer2[i]);
                 starLayer2[i].y = starLayer2[i].y - 0.06f;
@@ -51,7 +51,7 @@ class Game
                     starLayer2[i].x = rand() % 800 + 1;
                     starLayer2[i].y = 600;
                 }
-                mainWindow.draw(shape);
+                mainWindow -> draw(shape);
 
                 shape.setPosition(starLayer3[i]);
                 starLayer3[i].y = starLayer3[i].y - 0.02f;
@@ -61,7 +61,7 @@ class Game
                     starLayer3[i].x = rand() % 800 + 1;
                     starLayer3[i].y = 600;
                 }
-                mainWindow.draw(shape);
+                mainWindow -> draw(shape);
             }
 
         }
@@ -81,7 +81,7 @@ class Game
                 sf::RectangleShape shotShape(sf::Vector2f(10.f,20.f));
                 shotShape.setFillColor(sf::Color::Red);
                 shotShape.setPosition(shotPosition);
-                mainWindow.draw(shotShape);
+                mainWindow -> draw(shotShape);
 
                 if(shotPosition.y < 0)
                     canShoot = true;
@@ -113,7 +113,7 @@ class Game
             sf::RectangleShape playerShape(sf::Vector2f(48.f,48.f));
             playerShape.setFillColor(sf::Color::Green);
             playerShape.setPosition(playerPosition);
-            mainWindow.draw(playerShape);
+            mainWindow -> draw(playerShape);
         }
 
         void SpawnEnemies()
@@ -131,7 +131,7 @@ class Game
                 sf::RectangleShape enemyShape(sf::Vector2f(32.f,32.f));
                 enemyShape.setFillColor(sf::Color::Red);
                 enemyShape.setPosition(enemies[i].GetPosition());
-                mainWindow.draw(enemyShape);
+                mainWindow -> draw(enemyShape);
 				
 				if(enemiesMoveRight == true)
 					enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
@@ -161,13 +161,16 @@ class Game
 				
         }
 
+    private:
+        sf::RenderWindow tmpWind;
 
     public:
         Game()
         {
             srand (time(NULL));
-
-            mainWindow.create(sf::VideoMode(800,600),"Space Invaders");
+            
+            tmpWind.create(sf::VideoMode(800,600),"Space Invaders");
+            mainWindow = &tmpWind;
             isWindowInitialized = true;
 
 			enemyAnchorPosition = sf::Vector2f(25.f, 25.f);
@@ -195,17 +198,17 @@ class Game
 
             if(isWindowInitialized == true)
             {
-                while (mainWindow.isOpen())
+                while (mainWindow -> isOpen())
                 {
                     sf::Event event;
-                    while (mainWindow.pollEvent(event))
+                    while (mainWindow -> pollEvent(event))
                     {
                         if (event.type == sf::Event::Closed)
-                            mainWindow.close();
+                            mainWindow -> close();
 
                     }
 
-                    mainWindow.clear();
+                    mainWindow -> clear();
 
                     Starfield();
                     DrawPlayer();
@@ -214,7 +217,7 @@ class Game
 
                     moveShoot();
 
-                    mainWindow.display();
+                    mainWindow -> display();
                 }
             }
             
