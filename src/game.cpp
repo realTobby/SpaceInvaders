@@ -3,7 +3,7 @@
 #include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
-
+#include "enemy.hpp"
 
 
 using namespace std;
@@ -16,7 +16,7 @@ class Game
         sf::Vector2f starLayer1[100];
         sf::Vector2f starLayer2[100];
         sf::Vector2f starLayer3[100];
-        sf::Vector2f enemyPositions[10];
+        EnemyModel enemies[10];
 		sf::Vector2f enemyAnchorPosition;
 
         sf::Vector2f playerPosition = sf::Vector2f(400.f,500.f);
@@ -120,8 +120,7 @@ class Game
         {
             for(int i = 0; i < 10; i++)
             {
-                enemyPositions[i].x = enemyAnchorPosition.x + i * 48;
-                enemyPositions[i].y = enemyAnchorPosition.y;
+                enemies[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 48, enemyAnchorPosition.y));
             }
         }
 
@@ -131,7 +130,7 @@ class Game
             {
                 sf::RectangleShape enemyShape(sf::Vector2f(32.f,32.f));
                 enemyShape.setFillColor(sf::Color::Red);
-                enemyShape.setPosition(enemyPositions[i]);
+                enemyShape.setPosition(enemies[i].GetPosition());
                 mainWindow.draw(enemyShape);
 				
 				if(enemiesMoveRight == true)
