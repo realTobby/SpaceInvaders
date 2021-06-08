@@ -12,7 +12,7 @@ all: spaceinvaders
 
 spaceinvaders: enemy.o main.o game.o
 	echo "** Building the game"
-	$(CXX) -o builds\spaceinvaders builds\enemy.o builds\main.o builds\game.o $(LIBS)
+	$(CXX) -o spaceinvaders enemy.o main.o game.o $(LIBS)
 
 
 clean:

@@ -202,11 +202,11 @@ class Game
 				
 				if(enemiesMoveRight == true)
 					enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
-				if(enemyAnchorPosition.x > 350.f)
+				if(enemyAnchorPosition.x > 100.f)
 				{
 					enemiesMoveRight = false;
-					enemyAnchorPosition.y += 16.f;
-					enemyAnchorPosition.x = 349.f;
+					enemyAnchorPosition.y += 8.f;
+					enemyAnchorPosition.x = 99.f;
 					enemySpeed = enemySpeed + 0.004f;
 				}
 				
@@ -215,7 +215,7 @@ class Game
 				if(enemyAnchorPosition.x < 0.f)
 				{
 					enemiesMoveRight = true;
-					enemyAnchorPosition.y += 16.f;
+					enemyAnchorPosition.y += 8.f;
 					enemyAnchorPosition.x = 1.f;
 					enemySpeed = enemySpeed + 0.004f;
 				}
