@@ -97,32 +97,32 @@ class Game
             for(int i = 0; i < 100; i++)
             {
                 shape.setPosition(starLayer1[i]);
-                starLayer1[i].y = starLayer1[i].y - 0.09f;
+                starLayer1[i].y = starLayer1[i].y + 0.09f;
 
-                if(starLayer1[i].y <= 0)
+                if(starLayer1[i].y >= 600)
                 {
                     starLayer1[i].x = rand() % 800 + 1;
-                    starLayer1[i].y = 600;
+                    starLayer1[i].y = 0;
                 }
                 ptrWindow -> draw(shape);
 
                 shape.setPosition(starLayer2[i]);
-                starLayer2[i].y = starLayer2[i].y - 0.06f;
+                starLayer2[i].y = starLayer2[i].y + 0.06f;
 
-                if(starLayer2[i].y <= 0)
+                if(starLayer2[i].y >= 600)
                 {
                     starLayer2[i].x = rand() % 800 + 1;
-                    starLayer2[i].y = 600;
+                    starLayer2[i].y = 0;
                 }
                 ptrWindow -> draw(shape);
 
                 shape.setPosition(starLayer3[i]);
-                starLayer3[i].y = starLayer3[i].y - 0.02f;
+                starLayer3[i].y = starLayer3[i].y + 0.02f;
 
-                if(starLayer3[i].y <= 0)
+                if(starLayer3[i].y >= 600)
                 {
                     starLayer3[i].x = rand() % 800 + 1;
-                    starLayer3[i].y = 600;
+                    starLayer3[i].y = 0;
                 }
                 ptrWindow -> draw(shape);
             }
