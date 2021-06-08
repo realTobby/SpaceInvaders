@@ -10,6 +10,21 @@ using namespace std;
 
 class Game
 {
+    private:
+        sf::RenderWindow tmpWind;
+        sf::RenderWindow *ptrWindow;
+        bool isWindowInitialized = false;
+        sf::Vector2f starLayer1[100];
+        sf::Vector2f starLayer2[100];
+        sf::Vector2f starLayer3[100];
+        EnemyModel enemies[10];
+        sf::Vector2f enemyAnchorPosition;
+        sf::Vector2f playerPosition = sf::Vector2f(400.f,500.f);
+        bool canShoot = true;
+        sf::Vector2f shotPosition = sf::Vector2f(playerPosition.x, playerPosition.y);
+        bool enemiesMoveRight = true;
+        float enemySpeed = 0.007f;
+        
     public:
         Game()
         {
@@ -71,21 +86,6 @@ class Game
         }
 
     private:
-        sf::RenderWindow tmpWind;
-        sf::RenderWindow *ptrWindow;
-        bool isWindowInitialized = false;
-        sf::Vector2f starLayer1[100];
-        sf::Vector2f starLayer2[100];
-        sf::Vector2f starLayer3[100];
-        EnemyModel enemies[10];
-		sf::Vector2f enemyAnchorPosition;
-
-        sf::Vector2f playerPosition = sf::Vector2f(400.f,500.f);
-
-        bool canShoot = true;
-        sf::Vector2f shotPosition = sf::Vector2f(playerPosition.x, playerPosition.y);
-		bool enemiesMoveRight = true;
-		float enemySpeed = 0.007f;
         void Starfield()
         {
             // create basic star shape
