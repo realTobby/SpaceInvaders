@@ -1,12 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include "player.hpp"
 
-void PlayerModel::Init(sf::RenderWindow *ptrWindow)
+void PlayerModel::Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture)
 {
-	windowPointer = ptrWindow;
-
-	playerShape = sf::RectangleShape(sf::Vector2f(48.f,48.f));
-    playerShape.setFillColor(sf::Color::Green);
+	Init(ptrWindow, ptrTexture);
 
     shotShape = sf::RectangleShape(sf::Vector2f(10.f,20.f));
 
@@ -16,25 +13,9 @@ void PlayerModel::Init(sf::RenderWindow *ptrWindow)
     
 }
 
-void PlayerModel::Draw()
-{
-	windowPointer -> draw(playerShape);
-}
-
-sf::Vector2f PlayerModel::GetPosition()
-{
-	return Position;
-}
-
-void PlayerModel::SetPosition(sf::Vector2f pos)
-{
-	Position = pos;
-	playerShape.setPosition(Position);
-}
-
 void PlayerModel::Update()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && Position.x > 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && GetPosition().x > 0)
     {
         // move left...
         //cout << "Move Left..." << endl;
@@ -42,7 +23,7 @@ void PlayerModel::Update()
         newPos.x -= 0.09f; // ==> ???? Wenn ich hier playerSpeed als Variable eintrage dann bewegt sich der Player nicht mehr???  !!!!!!
         SetPosition(newPos);
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && Position.x < 800-48)
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && GetPosition().x < 800-48)
     {
         // move right...
         //cout << "Move Right..." << endl;
@@ -62,12 +43,12 @@ void PlayerModel::Update()
         
         shotShape.setFillColor(sf::Color::Red);
         shotShape.setPosition(shotPosition);
-        windowPointer -> draw(shotShape);
+        //windowPointer -> draw(shotShape);
 
         if(shotPosition.y < 0)
             canShoot = true;
     }
-    Draw();
+    DrawSprite();
 }
 
 void PlayerModel::shoot()

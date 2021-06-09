@@ -1,13 +1,12 @@
 // player.hpp
+#include "drawable.hpp"
+
 #ifndef PlayerModel_h
 #define PlayerModel_h
 
-class PlayerModel
+class PlayerModel : public DrawableModel
 {
 	private:
-		sf::RenderWindow *windowPointer;
-		sf::Vector2f Position;
-		sf::RectangleShape playerShape;
 		sf::RectangleShape shotShape;
 		bool canShoot;
         sf::Vector2f shotPosition;
@@ -16,10 +15,7 @@ class PlayerModel
         void shoot();
 
 	public:
-		void Init(sf::RenderWindow *ptrWindow);
-		void Draw();
-		sf::Vector2f GetPosition();
-		void SetPosition(sf::Vector2f pos);
+		void Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture);
 		void Update();
 };
 #endif

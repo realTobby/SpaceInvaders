@@ -9,6 +9,7 @@ using namespace std;
 class Game
 {
     private:
+        sf::Texture playerShipTexture;
         sf::RenderWindow renderWindow;
         bool isWindowInitialized = false;
         
@@ -24,7 +25,13 @@ class Game
             //ptrWindow = &renderWindow;
             isWindowInitialized = true;
 
-            player.Init(&renderWindow);
+
+            if (!playerShipTexture.loadFromFile("assets/ship1.png"))
+            {
+                // error...
+            }
+
+            player.Spawn(&renderWindow, &playerShipTexture);
             background.Init(&renderWindow);
             enemyHandler.Init(&renderWindow);
 
