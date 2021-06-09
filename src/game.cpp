@@ -3,12 +3,14 @@
 #include "starfield.hpp"
 #include "enemyhandler.hpp"
 #include "player.hpp"
+#include "logging.hpp"
 
 using namespace std;
 
 class Game
 {
     private:
+        Logging myLogger = Logging("log.txt");
         sf::Texture playerShipTexture; // Textur für das Spieler-Objekt
         sf::RenderWindow renderWindow; // EINZIGES RenderWindow (Screen) auf dem alles gezeichnet wird (Draw), => wird als PointerReferenz übergeben
         bool isWindowInitialized = false;
@@ -25,7 +27,6 @@ class Game
             //ptrWindow = &renderWindow;
             isWindowInitialized = true;
 
-
             if (!playerShipTexture.loadFromFile("assets/ship1.png")) // Lädt die Textur ein
             {
                 // error...
@@ -40,17 +41,21 @@ class Game
         // Spiel Schleife
         void GameLoop() 
         {
-            cout << "GameLoop called!" << endl;
+            myLogger.Log(Logging::Information, "Game Loop called");
             if(isWindowInitialized == true)
             {
-                cout << "GameLoop starts..." << endl;
+                myLogger.Log(Logging::Information, "Game Loop started");
                 while (renderWindow.isOpen()) // Solange Fenster offen ist (in dieser game.cpp wird mit dem renderWindow und nicht dem Pointer gearbeitet)
                 {
                     sf::Event event;
                     while (renderWindow.pollEvent(event)) // hole alle Events die gefeuert werden
                     {
                         if (event.type == sf::Event::Closed)
+                        {
+                            myLogger.Log(Logging::Information, "Window Closed");
                             renderWindow.close();
+                        }
+                        
                     }
 
                     renderWindow.clear(); // Bereinige den Screen
@@ -60,7 +65,7 @@ class Game
                     renderWindow.display(); // Zeige den neugezeichneten Bildschirm an
                 }
             }
-            cout << "GameLoop ended!" << endl;
+            myLogger.Log(Logging::Information, "Game Loop ended");
         }
 
     private:
