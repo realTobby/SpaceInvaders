@@ -15,26 +15,5 @@ EnemyModel::EnemyModel()
 // Übergebe den Pointer zum RenderWindow
 void EnemyModel::Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture)
 {
-	windowPointer = ptrWindow;
-	sprite.setTexture((*ptrTexture));
-}
-
-// Zeichne das Enemy
-void EnemyModel::Draw()
-{
-	sprite.setPosition(GetPosition());        
-	windowPointer -> draw(sprite);
-}
-
-// Hole Position
-sf::Vector2f EnemyModel::GetPosition()
-{
-	return Position;
-}
-
-// Setze Position
-void EnemyModel::SetPosition(sf::Vector2f pos)
-{
-	Position = pos;
-	Draw();
+	Init(ptrWindow, ptrTexture);
 }

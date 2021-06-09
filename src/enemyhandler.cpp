@@ -42,5 +42,6 @@ void EnemyHandler::Update()
             enemySpeed = enemySpeed + 0.004f;
         }
         enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
+        enemyList[i].DrawSprite();
     }
 }
