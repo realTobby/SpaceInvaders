@@ -1,9 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <stdio.h>      /* printf, scanf, puts, NULL */
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
-#include "enemy.hpp"
+#include "starfield.hpp"
+#include "enemyhandler.hpp"
 
 
 using namespace std;
@@ -14,18 +13,15 @@ class Game
         sf::RenderWindow renderWindow;
         sf::RenderWindow *ptrWindow;
         bool isWindowInitialized = false;
-        sf::Vector2f starLayer1[100];
-        sf::Vector2f starLayer2[100];
-        sf::Vector2f starLayer3[100];
-        EnemyModel enemies[10];
-        sf::Vector2f enemyAnchorPosition;
+        
+        
+    
         sf::Vector2f playerPosition = sf::Vector2f(400.f,500.f);
         bool canShoot = true;
         sf::Vector2f shotPosition = sf::Vector2f(playerPosition.x, playerPosition.y);
-        bool enemiesMoveRight = true;
-        float enemySpeed = 0.007f;
-        sf::Texture enemyTexture;
-        sf::Texture *ptrEnemyTexture;
+
+        Starfield background;
+        EnemyHandler enemyHandler;
 
     public:
         Game()
@@ -36,21 +32,8 @@ class Game
             ptrWindow = &renderWindow;
             isWindowInitialized = true;
 
-            enemyAnchorPosition = sf::Vector2f(25.f, 25.f);
-
-            for(int i = 0; i < 100; i++)
-            {
-                starLayer1[i].x = rand() % 800 + 1;
-                starLayer1[i].y = rand() % 600 + 1;
-
-                starLayer2[i].x = rand() % 800 + 1;
-                starLayer2[i].y = rand() % 600 + 1;
-
-                starLayer3[i].x = rand() % 800 + 1;
-                starLayer3[i].y = rand() % 600 + 1;
-            }
-
-            SpawnEnemies();
+            background.Init(ptrWindow);
+            enemyHandler.Init(ptrWindow);
 
         }
 
@@ -68,17 +51,11 @@ class Game
                     {
                         if (event.type == sf::Event::Closed)
                             ptrWindow -> close();
-
                     }
 
                     ptrWindow -> clear();
 
-                    Starfield();
-                    DrawPlayer();
-                    DrawEnemies();
-                    PlayerMove();
-
-                    moveShoot();
+                    Update();
 
                     ptrWindow -> display();
                 }
@@ -88,45 +65,11 @@ class Game
         }
 
     private:
-        void Starfield()
+
+        void Update()
         {
-            // create basic star shape
-            sf::RectangleShape shape(sf::Vector2f(1.2f,1.2f));
-            shape.setFillColor(sf::Color::White);
-
-            for(int i = 0; i < 100; i++)
-            {
-                shape.setPosition(starLayer1[i]);
-                starLayer1[i].y = starLayer1[i].y + 0.09f;
-
-                if(starLayer1[i].y >= 600)
-                {
-                    starLayer1[i].x = rand() % 800 + 1;
-                    starLayer1[i].y = 0;
-                }
-                ptrWindow -> draw(shape);
-
-                shape.setPosition(starLayer2[i]);
-                starLayer2[i].y = starLayer2[i].y + 0.06f;
-
-                if(starLayer2[i].y >= 600)
-                {
-                    starLayer2[i].x = rand() % 800 + 1;
-                    starLayer2[i].y = 0;
-                }
-                ptrWindow -> draw(shape);
-
-                shape.setPosition(starLayer3[i]);
-                starLayer3[i].y = starLayer3[i].y + 0.02f;
-
-                if(starLayer3[i].y >= 600)
-                {
-                    starLayer3[i].x = rand() % 800 + 1;
-                    starLayer3[i].y = 0;
-                }
-                ptrWindow -> draw(shape);
-            }
-
+            background.Update();
+            enemyHandler.Update();
         }
 
         void shoot()
@@ -177,50 +120,6 @@ class Game
             playerShape.setFillColor(sf::Color::Green);
             playerShape.setPosition(playerPosition);
             ptrWindow -> draw(playerShape);
-        }
-
-        void SpawnEnemies()
-        {
-            if (!enemyTexture.loadFromFile("assets/alien1.png"))
-            {
-                // error...
-            }
-            ptrEnemyTexture = &enemyTexture;
-
-            for(int i = 0; i < 10; i++)
-            {
-                enemies[i].Spawn(ptrWindow, ptrEnemyTexture);
-                enemies[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
-            }
-        }
-
-        void DrawEnemies()
-        {
-            for(int i = 0; i < 10; i++)
-            {
-                enemies[i].Draw();
-				
-				if(enemiesMoveRight == true)
-					enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
-				if(enemyAnchorPosition.x > 100.f)
-				{
-					enemiesMoveRight = false;
-					enemyAnchorPosition.y += 8.f;
-					enemyAnchorPosition.x = 99.f;
-					enemySpeed = enemySpeed + 0.004f;
-				}
-				
-				if(enemiesMoveRight == false)
-					enemyAnchorPosition.x = enemyAnchorPosition.x - enemySpeed;
-				if(enemyAnchorPosition.x < 0.f)
-				{
-					enemiesMoveRight = true;
-					enemyAnchorPosition.y += 8.f;
-					enemyAnchorPosition.x = 1.f;
-					enemySpeed = enemySpeed + 0.004f;
-				}
-                enemies[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
-            }
         }
 };
 

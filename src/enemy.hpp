@@ -9,6 +9,8 @@ class EnemyModel
 		sf::Texture *ptrTexture;
 		sf::Vector2f Position;
 		sf::Sprite sprite;
+		bool isMovingRight = true;
+		sf::Vector2f enemyAnchorPosition;
 
 	public:
 		EnemyModel();
@@ -16,6 +18,5 @@ class EnemyModel
 		void Draw();
 		sf::Vector2f GetPosition();
 		void SetPosition(sf::Vector2f pos);
-
 };
 #endif
