@@ -10,14 +10,15 @@ all: spaceinvaders
 %.o: src/%.hpp
 	$(CXX) -c $< -o $@
 
-spaceinvaders: logging.o drawable.o enemy.o main.o game.o starfield.o enemyhandler.o player.o 
+spaceinvaders: main.o game.o enemy.o player.o enemyhandler.o drawable.o starfield.o logging.o
 	echo "** Building the game"
-	$(CXX) -o spaceinvaders logging.o drawable.o enemy.o main.o game.o starfield.o enemyhandler.o player.o $(LIBS)
+	$(CXX) -o spaceinvaders main.o game.o enemy.o player.o enemyhandler.o drawable.o starfield.o logging.o $(LIBS)
 
 
 clean:
 	@echo "** Removing object files and executable..."
 	rm -f spaceinvaders
+	rm -f spaceinvaders.exe
 	rm -f *.o
 
 
