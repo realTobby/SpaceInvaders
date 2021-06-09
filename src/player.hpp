@@ -8,9 +8,12 @@ class PlayerModel
 		sf::RenderWindow *windowPointer;
 		sf::Vector2f Position;
 		sf::RectangleShape playerShape;
+		sf::RectangleShape shotShape;
 		bool canShoot;
         sf::Vector2f shotPosition;
         float playerSpeed;
+
+        void shoot();
 
 	public:
 		void Init(sf::RenderWindow *ptrWindow);

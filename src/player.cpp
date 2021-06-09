@@ -7,6 +7,9 @@ void PlayerModel::Init(sf::RenderWindow *ptrWindow)
 
 	playerShape = sf::RectangleShape(sf::Vector2f(48.f,48.f));
     playerShape.setFillColor(sf::Color::Green);
+
+    shotShape = sf::RectangleShape(sf::Vector2f(10.f,20.f));
+
     playerSpeed = 0.09f;
     canShoot = true;
     SetPosition(sf::Vector2f(400.f,500.f));
@@ -50,12 +53,26 @@ void PlayerModel::Update()
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canShoot == true)
     {
         shotPosition = GetPosition();
-        canShoot = false;
+        shoot();
     }
 
     if(canShoot == false)
     {
+    	shotPosition.y = shotPosition.y - 0.25f;
+        
+        shotShape.setFillColor(sf::Color::Red);
+        shotShape.setPosition(shotPosition);
+        windowPointer -> draw(shotShape);
 
+        if(shotPosition.y < 0)
+            canShoot = true;
     }
     Draw();
+}
+
+void PlayerModel::shoot()
+{
+    shotPosition.x = GetPosition().x + 16.f;
+    shotPosition.y = GetPosition().y;
+    canShoot = false;
 }
