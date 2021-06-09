@@ -10,6 +10,10 @@ using namespace std;
 // Übergebe den Pointer zum RenderWindow
 void Starfield::Init(sf::RenderWindow *ptrWindow)
 {
+    starSpeed1 = 0.09f;
+    starSpeed2 = 0.06f;
+    starSpeed3 = 0.02f;
+
 	windowPointer = ptrWindow;
 	starShape = sf::RectangleShape(sf::Vector2f(1.2f,1.2f));
 	starShape.setFillColor(sf::Color::White);
@@ -26,6 +30,13 @@ void Starfield::Init(sf::RenderWindow *ptrWindow)
     }
 }
 
+void Starfield::SpeedUp()
+{
+    starSpeed1 += 0.05f;
+    starSpeed2 += 0.05f;
+    starSpeed3 += 0.05f;
+}
+
 // Zeichne das Enemy
 void Starfield::Draw()
 {      
@@ -37,7 +48,7 @@ void Starfield::Update()
     for(int i = 0; i < 100; i++)
     {
         starShape.setPosition(starLayer1[i]);
-        starLayer1[i].y = starLayer1[i].y + 0.09f;
+        starLayer1[i].y = starLayer1[i].y + starSpeed1;
 
         if(starLayer1[i].y >= 600)
         {
@@ -47,7 +58,7 @@ void Starfield::Update()
         Starfield::Draw();
 
         starShape.setPosition(starLayer2[i]);
-        starLayer2[i].y = starLayer2[i].y + 0.06f;
+        starLayer2[i].y = starLayer2[i].y + starSpeed2;
 
         if(starLayer2[i].y >= 600)
         {
@@ -57,7 +68,7 @@ void Starfield::Update()
         Starfield::Draw();
 
         starShape.setPosition(starLayer3[i]);
-        starLayer3[i].y = starLayer3[i].y + 0.02f;
+        starLayer3[i].y = starLayer3[i].y + starSpeed3;
 
         if(starLayer3[i].y >= 600)
         {

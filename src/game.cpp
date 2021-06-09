@@ -34,7 +34,7 @@ class Game
 
             player.Spawn(&renderWindow, &playerShipTexture); // Initalisiert das Spieler-Objekt mit den PointerReferenzen
             background.Init(&renderWindow); // Initialisiert das Hintergrund-Objekt mit dem WindowPointer
-            enemyHandler.Init(&renderWindow); // Initialisiert die GegnerLogik mit WindowPointer
+            enemyHandler.Init(&renderWindow, &background); // Initialisiert die GegnerLogik mit WindowPointer
 
         }
 

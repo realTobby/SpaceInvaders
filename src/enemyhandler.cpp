@@ -4,8 +4,9 @@
 
 using namespace std;
 
-void EnemyHandler::Init(sf::RenderWindow *prtWindow)
+void EnemyHandler::Init(sf::RenderWindow *prtWindow, Starfield *starsRef)
 {
+    ptrStarfield = starsRef;
     enemySpeed = 0.007f;
     isMovingRight = true;
     if (!enemyTexture.loadFromFile("assets/alien1.png"))
@@ -32,6 +33,7 @@ void EnemyHandler::Update()
             enemyAnchorPosition.y += 8.f;
             enemyAnchorPosition.x = 99.f;
             enemySpeed = enemySpeed + 0.004f;
+            ptrStarfield -> SpeedUp();
         }
         
         if(isMovingRight == false)
@@ -42,6 +44,7 @@ void EnemyHandler::Update()
             enemyAnchorPosition.y += 8.f;
             enemyAnchorPosition.x = 1.f;
             enemySpeed = enemySpeed + 0.004f;
+            ptrStarfield -> SpeedUp();
         }
         enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
         enemyList[i].DrawSprite();
