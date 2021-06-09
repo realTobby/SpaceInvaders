@@ -10,9 +10,9 @@ all: spaceinvaders
 %.o: src/%.hpp
 	$(CXX) -c $< -o $@
 
-spaceinvaders: enemy.o main.o game.o starfield.o enemyhandler.o
+spaceinvaders: enemy.o main.o game.o starfield.o enemyhandler.o player.o
 	echo "** Building the game"
-	$(CXX) -o spaceinvaders enemy.o main.o game.o starfield.o enemyhandler.o $(LIBS)
+	$(CXX) -o spaceinvaders enemy.o main.o game.o starfield.o enemyhandler.o player.o $(LIBS)
 
 
 clean:
