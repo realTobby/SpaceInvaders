@@ -6,6 +6,8 @@ using namespace std;
 
 void EnemyHandler::Init(sf::RenderWindow *prtWindow)
 {
+    enemySpeed = 0.007f;
+    isMovingRight = true;
     if (!enemyTexture.loadFromFile("assets/alien1.png"))
     {
         // error...

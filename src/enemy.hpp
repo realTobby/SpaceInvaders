@@ -7,8 +7,6 @@ class EnemyModel : public DrawableModel
 {
 	private:
 		sf::Vector2f Position;
-		
-		bool isMovingRight = true;
 		sf::Vector2f enemyAnchorPosition;
 
 	public:

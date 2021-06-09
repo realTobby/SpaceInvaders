@@ -9,7 +9,6 @@ EnemyModel::EnemyModel()
 {
 	SetPosition(sf::Vector2f(0.f,0.f));
 	cout << "Enemy erstellt!" << endl;
-	isMovingRight = true;
 }
 
 // Übergebe den Pointer zum RenderWindow

@@ -7,9 +7,9 @@ class EnemyHandler
 {
 	private:
 		EnemyModel enemyList[10];
-		bool isMovingRight = true;
+		bool isMovingRight;
 		sf::Vector2f enemyAnchorPosition;
-		float enemySpeed = 0.007f;
+		float enemySpeed;
 		sf::Texture enemyTexture;
 
 	public:

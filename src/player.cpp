@@ -20,7 +20,7 @@ void PlayerModel::Update()
         // move left...
         //cout << "Move Left..." << endl;
         sf::Vector2f newPos = GetPosition();
-        newPos.x -= 0.09f; // ==> ???? Wenn ich hier playerSpeed als Variable eintrage dann bewegt sich der Player nicht mehr???  !!!!!!
+        newPos.x -= 0.6f; // ==> ???? Wenn ich hier playerSpeed als Variable eintrage dann bewegt sich der Player nicht mehr???  !!!!!!
         SetPosition(newPos);
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && GetPosition().x < 800-48)
@@ -28,7 +28,7 @@ void PlayerModel::Update()
         // move right...
         //cout << "Move Right..." << endl;
         sf::Vector2f newPos = GetPosition();
-        newPos.x += 0.09f; // ==> ???? Wenn ich hier playerSpeed als Variable eintrage dann bewegt sich der Player nicht mehr??? !!!!!!
+        newPos.x += 0.6f; // ==> ???? Wenn ich hier playerSpeed als Variable eintrage dann bewegt sich der Player nicht mehr??? !!!!!!
         SetPosition(newPos);
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && canShoot == true)
