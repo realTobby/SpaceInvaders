@@ -10,12 +10,14 @@
 int main()
 {
 
+// Wenn es sich um ein Windows-System handelt soll die Konsole verschwinden
 #ifdef _WIN32
     HWND hWnd = GetConsoleWindow();
     ShowWindow( hWnd, SW_HIDE );
 #endif
 
-    Game gameobj;
-    gameobj.GameLoop();
+    // Einsteig in das eigentliche Spiel
+    Game gameobj; // Spiel wird grundsätzlich erstellt (RenderWindow, startup Variablen, usw...)
+    gameobj.GameLoop(); // Spiel Schleife
     return 0;
 }

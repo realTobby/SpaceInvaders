@@ -9,54 +9,55 @@ using namespace std;
 class Game
 {
     private:
-        sf::Texture playerShipTexture;
-        sf::RenderWindow renderWindow;
+        sf::Texture playerShipTexture; // Textur für das Spieler-Objekt
+        sf::RenderWindow renderWindow; // EINZIGES RenderWindow (Screen) auf dem alles gezeichnet wird (Draw), => wird als PointerReferenz übergeben
         bool isWindowInitialized = false;
         
-        PlayerModel player;
+        PlayerModel player; // Eigenständiges Spieler-objekt
 
-        Starfield background;
-        EnemyHandler enemyHandler;
+        Starfield background; // Eigenständiges Hintergrund-objekt
+        EnemyHandler enemyHandler; // Logik und zusammenhalt der Gegner-Objekte
 
     public:
         Game()
         {
-            renderWindow.create(sf::VideoMode(800,600),"Space Invaders");
+            renderWindow.create(sf::VideoMode(800,600),"Space Invaders"); // RenderWindow wird erstellt und bleibt durch PointerReferenz auch das einzige
             //ptrWindow = &renderWindow;
             isWindowInitialized = true;
 
 
-            if (!playerShipTexture.loadFromFile("assets/ship1.png"))
+            if (!playerShipTexture.loadFromFile("assets/ship1.png")) // Lädt die Textur ein
             {
                 // error...
             }
 
-            player.Spawn(&renderWindow, &playerShipTexture);
-            background.Init(&renderWindow);
-            enemyHandler.Init(&renderWindow);
+            player.Spawn(&renderWindow, &playerShipTexture); // Initalisiert das Spieler-Objekt mit den PointerReferenzen
+            background.Init(&renderWindow); // Initialisiert das Hintergrund-Objekt mit dem WindowPointer
+            enemyHandler.Init(&renderWindow); // Initialisiert die GegnerLogik mit WindowPointer
 
         }
 
+        // Spiel Schleife
         void GameLoop() 
         {
             cout << "GameLoop called!" << endl;
             if(isWindowInitialized == true)
             {
                 cout << "GameLoop starts..." << endl;
-                while (renderWindow.isOpen())
+                while (renderWindow.isOpen()) // Solange Fenster offen ist (in dieser game.cpp wird mit dem renderWindow und nicht dem Pointer gearbeitet)
                 {
                     sf::Event event;
-                    while (renderWindow.pollEvent(event))
+                    while (renderWindow.pollEvent(event)) // hole alle Events die gefeuert werden
                     {
                         if (event.type == sf::Event::Closed)
                             renderWindow.close();
                     }
 
-                    renderWindow.clear();
+                    renderWindow.clear(); // Bereinige den Screen
 
-                    Update();
+                    Update(); // Führe eine Update-Sequenz durch
 
-                    renderWindow.display();
+                    renderWindow.display(); // Zeige den neugezeichneten Bildschirm an
                 }
             }
             cout << "GameLoop ended!" << endl;
@@ -64,6 +65,7 @@ class Game
 
     private:
 
+        // Spiel Logik wird hier eingebracht, die einzelnen Objekte und Handler haben ihre eigene Logik, diese wird hier ausgeführt
         void Update()
         {
             background.Update();
