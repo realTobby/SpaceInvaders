@@ -77,6 +77,13 @@ class Game
             enemyHandler.Update();
             player.Update();
         }
+
+        void CheckForCollisions()
+        {
+            // get all positions from enemies
+            // get position from the shot
+            // check if the shot position is in reach of enemy
+        }
 };
 
 

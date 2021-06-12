@@ -18,6 +18,11 @@ void DrawableModel::DrawSprite()
 	windowPointer -> draw(sprite);
 }
 
+void DrawableModel::DrawShape(sf::RectangleShape shapeToDraw)
+{
+	windowPointer -> draw(shapeToDraw);
+}
+
 // Hole Position
 sf::Vector2f DrawableModel::GetPosition()
 {
