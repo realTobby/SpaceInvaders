@@ -25,7 +25,9 @@ void EnemyHandler::Update()
 {
     for(int i = 0; i < 10; i++)
     {
-        if(isMovingRight == true)
+        if(enemyList[i].isAlive == true)
+        {
+            if(isMovingRight == true)
             enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
         if(enemyAnchorPosition.x > 100.f)
         {
@@ -48,5 +50,23 @@ void EnemyHandler::Update()
         }
         enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
         enemyList[i].DrawSprite();
+        }
+
+        
+    }
+}
+
+void EnemyHandler::CheckForCollision(sf::Vector2f shotPos)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        sf::Vector2f e = enemyList[i].GetPosition();
+        if(shotPos.x >= e.x && shotPos.x <= e.x + 64)
+        {
+            if(shotPos.y <= e.y && shotPos.y >= e.y + 64)
+            {
+                enemyList[i].Die();
+            }
+        }
     }
 }

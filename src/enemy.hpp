@@ -6,11 +6,13 @@
 class EnemyModel : public DrawableModel
 {
 	private:
-		sf::Vector2f Position;
 		sf::Vector2f enemyAnchorPosition;
 
+
 	public:
+		bool isAlive;
 		EnemyModel();
 		void Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture);
+		void Die();
 };
 #endif

@@ -10,10 +10,10 @@ using namespace std;
 class Game
 {
     private:
-        Logging myLogger = Logging("log.txt");
+        Logging myLogger;
         sf::Texture playerShipTexture; // Textur für das Spieler-Objekt
         sf::RenderWindow renderWindow; // EINZIGES RenderWindow (Screen) auf dem alles gezeichnet wird (Draw), => wird als PointerReferenz übergeben
-        bool isWindowInitialized = false;
+        bool isWindowInitialized;
         
         PlayerModel player; // Eigenständiges Spieler-objekt
 
@@ -21,8 +21,9 @@ class Game
         EnemyHandler enemyHandler; // Logik und zusammenhalt der Gegner-Objekte
 
     public:
-        Game()
+        Game() : myLogger("log.txt")
         {
+            
             renderWindow.create(sf::VideoMode(800,600),"Space Invaders"); // RenderWindow wird erstellt und bleibt durch PointerReferenz auch das einzige
             //ptrWindow = &renderWindow;
             isWindowInitialized = true;
@@ -84,9 +85,7 @@ class Game
             // get all positions from enemies
             // get position from the shot
             // check if the shot position is in reach of enemy
-            sf::Vector2f shotPos = player.GetShotPosition();
-            cout << "Shot Pos: " << shotPos.x << " / " << shotPos.y << endl;
-
+            enemyHandler.CheckForCollision(player.GetShotPosition());
 
         }
 };
