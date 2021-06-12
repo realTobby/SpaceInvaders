@@ -17,5 +17,6 @@ class PlayerModel : public DrawableModel
 	public:
 		void Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture);
 		void Update();
+	    sf::Vector2f GetShotPosition();
 };
 #endif

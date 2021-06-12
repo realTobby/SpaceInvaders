@@ -57,3 +57,15 @@ void PlayerModel::shoot()
     shotPosition.y = GetPosition().y;
     canShoot = false;
 }
+
+sf::Vector2f PlayerModel::GetShotPosition()
+{
+    return shotShape.getPosition();
+}
+
+
+
+
+
+
+

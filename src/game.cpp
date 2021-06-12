@@ -76,6 +76,7 @@ class Game
             background.Update();
             enemyHandler.Update();
             player.Update();
+            CheckForCollisions();
         }
 
         void CheckForCollisions()
@@ -83,6 +84,10 @@ class Game
             // get all positions from enemies
             // get position from the shot
             // check if the shot position is in reach of enemy
+            sf::Vector2f shotPos = player.GetShotPosition();
+            cout << "Shot Pos: " << shotPos.x << " / " << shotPos.y << endl;
+
+
         }
 };
 
