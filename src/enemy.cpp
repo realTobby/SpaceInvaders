@@ -20,4 +20,5 @@ void EnemyModel::Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture)
 void EnemyModel::Die()
 {
 	isAlive = false;
+	//cout << "Enemy is dead now!" << endl;
 }

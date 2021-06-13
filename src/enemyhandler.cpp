@@ -60,13 +60,17 @@ void EnemyHandler::CheckForCollision(sf::Vector2f shotPos)
 {
     for(int i = 0; i < 10; i++)
     {
-        sf::Vector2f e = enemyList[i].GetPosition();
-        if(shotPos.x >= e.x && shotPos.x <= e.x + 64)
+        if(enemyList[i].isAlive == true)
         {
-            if(shotPos.y <= e.y && shotPos.y >= e.y + 64)
+            sf::Vector2f e = enemyList[i].GetPosition();
+            if(shotPos.x >= e.x && shotPos.x <= e.x + 64)
             {
-                enemyList[i].Die();
-            }
+                if(shotPos.y <= e.y + 64 && shotPos.y >= e.y)
+                {
+                    enemyList[i].Die();
+                }
+            }    
         }
+        
     }
 }
