@@ -9,11 +9,13 @@ class EnemyHandler
 {
 	private:
 		Starfield* ptrStarfield;
-		EnemyModel enemyList[10];
+		std::vector<EnemyModel> enemyList;
 		bool isMovingRight;
 		sf::Vector2f enemyAnchorPosition;
 		float enemySpeed;
 		sf::Texture enemyTexture;
+		int enemyCount;
+		int enemyRows;
 
 	public:
 		void Init(sf::RenderWindow *ptrWindow, Starfield *starsRef);

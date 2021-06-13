@@ -6,53 +6,66 @@ using namespace std;
 
 void EnemyHandler::Init(sf::RenderWindow *prtWindow, Starfield *starsRef)
 {
+    enemyCount = 20;
+    enemyRows = 2;
+    enemyList = std::vector<EnemyModel>(enemyCount);
     ptrStarfield = starsRef;
-    enemySpeed = 0.007f;
+    enemySpeed = 0.004f;
     isMovingRight = true;
-    if (!enemyTexture.loadFromFile("assets/alien1.png"))
+    if (!enemyTexture.loadFromFile("data/sprites/alien1.png"))
     {
         // error...
     }
     enemyAnchorPosition = sf::Vector2f(25.f, 25.f);
-    for(int i = 0; i < 10; i++)
+    int i = 0;
+    for(int y = 0; y < enemyRows; y++)
     {
-        enemyList[i].Spawn(prtWindow, &enemyTexture);
-        enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
+        for(int x = 0; x < enemyCount / enemyRows; x++)
+        {
+            enemyList[i].Spawn(prtWindow, &enemyTexture);
+            enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + x * 70, enemyAnchorPosition.y + y * 70));
+            i++;
+        }
     }
 }
 
 void EnemyHandler::Update()
 {
-    for(int i = 0; i < 10; i++)
+    int i = 0;
+    for(int y = 0; y < enemyRows; y++)
     {
-        if(enemyList[i].isAlive == true)
+        for(int x = 0; x < enemyCount / enemyRows; x++)
         {
-            if(isMovingRight == true)
-            enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
-        if(enemyAnchorPosition.x > 100.f)
-        {
-            isMovingRight = false;
-            enemyAnchorPosition.y += 8.f;
-            enemyAnchorPosition.x = 99.f;
-            enemySpeed = enemySpeed + 0.004f;
-            ptrStarfield -> SpeedUp();
+            if(enemyList[i].isAlive == true)
+            {
+                if(isMovingRight == true)
+                    enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
+                if(enemyAnchorPosition.x > 100.f)
+                {
+                    isMovingRight = false;
+                    enemyAnchorPosition.y += 8.f;
+                    enemyAnchorPosition.x = 99.f;
+                    enemySpeed = enemySpeed + 0.001f;
+                    ptrStarfield -> SpeedUp();
+                }
+                
+                if(isMovingRight == false)
+                    enemyAnchorPosition.x = enemyAnchorPosition.x - enemySpeed;
+                if(enemyAnchorPosition.x < 0.f)
+                {
+                    isMovingRight = true;
+                    enemyAnchorPosition.y += 8.f;
+                    enemyAnchorPosition.x = 1.f;
+                    enemySpeed = enemySpeed + 0.001f;
+                    ptrStarfield -> SpeedUp();
+                }
+                enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + x * 70, enemyAnchorPosition.y + y * 70));
+                enemyList[i].DrawSprite();
+                i++;
+            }
+            
+            
         }
-        
-        if(isMovingRight == false)
-            enemyAnchorPosition.x = enemyAnchorPosition.x - enemySpeed;
-        if(enemyAnchorPosition.x < 0.f)
-        {
-            isMovingRight = true;
-            enemyAnchorPosition.y += 8.f;
-            enemyAnchorPosition.x = 1.f;
-            enemySpeed = enemySpeed + 0.004f;
-            ptrStarfield -> SpeedUp();
-        }
-        enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + i * 70, enemyAnchorPosition.y));
-        enemyList[i].DrawSprite();
-        }
-
-        
     }
 }
 
