@@ -25,7 +25,7 @@ void EnemyHandler::Init(sf::RenderWindow *prtWindow, Starfield *starsRef)
             enemyList.at(i).Spawn(prtWindow, &enemyTexture);
             enemyList.at(i).SetPosition(sf::Vector2f(enemyAnchorPosition.x + x * 68, enemyAnchorPosition.y + y * 64));
             i++;
-            cout << "Enemy Index = " << to_string(i) << endl;
+            //cout << "Enemy Index = " << to_string(i) << endl;
         }
     }
 }
