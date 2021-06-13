@@ -8,13 +8,14 @@ class PlayerModel : public DrawableModel
 {
 	private:
 		sf::RectangleShape shotShape;
-		bool canShoot;
+		
         sf::Vector2f shotPosition;
         float playerSpeed;
 
         void shoot();
 
 	public:
+		bool canShoot;
 		void Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture);
 		void Update();
 	    sf::Vector2f GetShotPosition();

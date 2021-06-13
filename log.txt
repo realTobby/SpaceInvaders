@@ -330,3 +330,29 @@
 [Information] Game Loop ended
 [Information] Game Loop called
 [Information] Game Loop started
+[Information] Window Closed
+[Information] Game Loop ended
+[Information] Game Loop called
+[Information] Game Loop started
+[Information] Window Closed
+[Information] Game Loop ended
+[Information] Game Loop called
+[Information] Game Loop started
+[Information] Window Closed
+[Information] Game Loop ended
+[Information] Game Loop called
+[Information] Game Loop started
+[Information] Window Closed
+[Information] Game Loop ended
+[Information] Game Loop called
+[Information] Game Loop started
+[Information] Window Closed
+[Information] Game Loop ended
+[Information] Game Loop called
+[Information] Game Loop started
+[Information] Window Closed
+[Information] Game Loop ended
+[Information] Game Loop called
+[Information] Game Loop started
+[Information] Window Closed
+[Information] Game Loop ended

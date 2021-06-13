@@ -6,8 +6,8 @@ using namespace std;
 
 void EnemyHandler::Init(sf::RenderWindow *prtWindow, Starfield *starsRef)
 {
-    enemyCount = 20;
-    enemyRows = 2;
+    enemyCount = 40;
+    enemyRows = 4;
     enemyList = std::vector<EnemyModel>(enemyCount);
     ptrStarfield = starsRef;
     enemySpeed = 0.004f;
@@ -70,7 +70,7 @@ void EnemyHandler::Update()
     }
 }
 
-void EnemyHandler::CheckForCollision(sf::Vector2f shotPos)
+bool EnemyHandler::CheckForCollision(sf::Vector2f shotPos)
 {
     for(int i = 0; i < enemyCount; i++)
     {
@@ -83,9 +83,10 @@ void EnemyHandler::CheckForCollision(sf::Vector2f shotPos)
                 if(shotPos.y >= ePos.y && shotPos.y <= ePos.y + 64)
                 {
                     enemyList.at(i).Die();
+                    return true;
                 }
             }    
         }
-        
     }
+    return false;
 }

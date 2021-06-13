@@ -15,6 +15,11 @@ void PlayerModel::Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture)
 
 void PlayerModel::Update()
 {
+    if(canShoot == true)
+    {
+        shotPosition = GetPosition();
+    }
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && GetPosition().x > 0)
     {
         // move left...

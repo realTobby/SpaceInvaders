@@ -21,6 +21,6 @@ class EnemyHandler
 	public:
 		void Init(sf::RenderWindow *ptrWindow, Starfield *starsRef);
 		void Update();
-		void CheckForCollision(sf::Vector2f shotPosition);
+		bool CheckForCollision(sf::Vector2f shotPosition);
 };
 #endif
