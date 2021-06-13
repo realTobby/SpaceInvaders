@@ -14,4 +14,4 @@ or
 Run "build.bat" for Windows only.
 
 
-![Banner](https://github.com/realTobby/SpaceInvaders/blob/main/github/preview2.gif)
+![Banner](https://github.com/realTobby/SpaceInvaders/blob/main/github/preview3.gif)
