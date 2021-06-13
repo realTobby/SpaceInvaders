@@ -6,8 +6,8 @@ using namespace std;
 
 void EnemyHandler::Init(sf::RenderWindow *prtWindow, Starfield *starsRef)
 {
-    enemyCount = 20;
-    enemyRows = 2;
+    enemyCount = 40;
+    enemyRows = 4;
     enemyList = std::vector<EnemyModel>(enemyCount);
     ptrStarfield = starsRef;
     enemySpeed = 0.004f;
@@ -22,9 +22,10 @@ void EnemyHandler::Init(sf::RenderWindow *prtWindow, Starfield *starsRef)
     {
         for(int x = 0; x < enemyCount / enemyRows; x++)
         {
-            enemyList[i].Spawn(prtWindow, &enemyTexture);
-            enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + x * 70, enemyAnchorPosition.y + y * 70));
+            enemyList.at(i).Spawn(prtWindow, &enemyTexture);
+            enemyList.at(i).SetPosition(sf::Vector2f(enemyAnchorPosition.x + x * 68, enemyAnchorPosition.y + y * 64));
             i++;
+            //cout << "Enemy Index = " << to_string(i) << endl;
         }
     }
 }
@@ -36,7 +37,7 @@ void EnemyHandler::Update()
     {
         for(int x = 0; x < enemyCount / enemyRows; x++)
         {
-            if(enemyList[i].isAlive == true)
+            if(enemyList.at(i).isAlive == true)
             {
                 if(isMovingRight == true)
                     enemyAnchorPosition.x = enemyAnchorPosition.x + enemySpeed;
@@ -59,31 +60,33 @@ void EnemyHandler::Update()
                     enemySpeed = enemySpeed + 0.001f;
                     ptrStarfield -> SpeedUp();
                 }
-                enemyList[i].SetPosition(sf::Vector2f(enemyAnchorPosition.x + x * 70, enemyAnchorPosition.y + y * 70));
-                enemyList[i].DrawSprite();
-                i++;
+                enemyList.at(i).SetPosition(sf::Vector2f(enemyAnchorPosition.x + x * 70, enemyAnchorPosition.y + y * 70));
+                enemyList.at(i).DrawSprite();
+                
             }
-            
+            i++;
             
         }
     }
 }
 
-void EnemyHandler::CheckForCollision(sf::Vector2f shotPos)
+bool EnemyHandler::CheckForCollision(sf::Vector2f shotPos)
 {
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < enemyCount; i++)
     {
-        if(enemyList[i].isAlive == true)
+        EnemyModel e = enemyList.at(i);
+        if(e.isAlive == true)
         {
-            sf::Vector2f e = enemyList[i].GetPosition();
-            if(shotPos.x >= e.x && shotPos.x <= e.x + 64)
+            sf::Vector2f ePos = e.GetPosition();
+            if(shotPos.x >= ePos.x && shotPos.x <= ePos.x + 64)
             {
-                if(shotPos.y <= e.y + 64 && shotPos.y >= e.y)
+                if(shotPos.y >= ePos.y && shotPos.y <= ePos.y + 64)
                 {
-                    enemyList[i].Die();
+                    enemyList.at(i).Die();
+                    return true;
                 }
             }    
         }
-        
     }
+    return false;
 }

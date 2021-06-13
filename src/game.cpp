@@ -139,8 +139,9 @@ class Game
             // get all positions from enemies
             // get position from the shot
             // check if the shot position is in reach of enemy
-            enemyHandler.CheckForCollision(player.GetShotPosition());
-
+            bool isHit = enemyHandler.CheckForCollision(player.GetShotPosition());
+            if(isHit)
+                player.canShoot = true;
         }
 };
 
