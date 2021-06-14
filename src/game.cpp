@@ -141,7 +141,11 @@ class Game
             // check if the shot position is in reach of enemy
             bool isHit = enemyHandler.CheckForCollision(player.GetShotPosition());
             if(isHit)
+            {
                 player.canShoot = true;
+                playerScore = playerScore + 10;
+                playerScoreText.setString("Score: " + to_string(playerScore));
+            }
         }
 };
 
