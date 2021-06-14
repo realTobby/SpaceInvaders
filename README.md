@@ -9,9 +9,5 @@ Compiling the program:
 
 Run "make" in commandline while in the directory or Run "makeStart.bat". This will compile the "spaceinvaders" program.
 
-or
-
-Run "build.bat" for Windows only.
-
 
 ![Banner](https://github.com/realTobby/SpaceInvaders/blob/main/github/preview4.gif)
