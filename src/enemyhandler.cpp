@@ -6,8 +6,8 @@ using namespace std;
 
 void EnemyHandler::Init(sf::RenderWindow *prtWindow, Starfield *starsRef)
 {
-    enemyCount = 40;
-    enemyRows = 4;
+    enemyCount = 50;
+    enemyRows = 5;
     enemyList = std::vector<EnemyModel>(enemyCount);
     ptrStarfield = starsRef;
     enemySpeed = 0.4f;
@@ -23,7 +23,7 @@ void EnemyHandler::Init(sf::RenderWindow *prtWindow, Starfield *starsRef)
         for(int x = 0; x < enemyCount / enemyRows; x++)
         {
             enemyList.at(i).Spawn(prtWindow, &enemyTexture, multiplierIndex);
-            enemyList.at(i).SetPosition(sf::Vector2f(x * 64 + enemyList.at(i).GetSpriteSize(), y * 64 + enemyList.at(i).GetSpriteSize()));
+            enemyList.at(i).SetPosition(sf::Vector2f(x * 64 + enemyList.at(i).GetSpriteSize(), y * 48 + enemyList.at(i).GetSpriteSize() + 64));
             i++;
             //cout << "Enemy Index = " << to_string(i) << endl;
         }

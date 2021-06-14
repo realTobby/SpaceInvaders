@@ -62,7 +62,7 @@ class Game
             // set the color
             playerScoreText.setFillColor(sf::Color::White);
 
-            playerScoreText.setPosition(sf::Vector2f(48, 565));
+            playerScoreText.setPosition(sf::Vector2f(48, 4));
 
             // set the text style
             playerScoreText.setStyle(sf::Text::Bold);
@@ -83,7 +83,7 @@ class Game
             LoadTextures();
             LoadFonts();
             uiBase.setTexture(uiBaseTexture);
-            uiBase.setPosition(0,552);
+            uiBase.setPosition(0,0);
 
             player.Spawn(&renderWindow, &playerShipTexture); // Initalisiert das Spieler-Objekt mit den PointerReferenzen
             background.Init(&renderWindow); // Initialisiert das Hintergrund-Objekt mit dem WindowPointer
