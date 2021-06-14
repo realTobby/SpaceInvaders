@@ -2,7 +2,7 @@
 SpaceInvader game made with C++ and SFML
 
 Prerequisites:
-- C++ Compiler (I am using CLANG+XCode)
+- C++ Compiler (I am using MINGW for Windows and CLANG for MacOS)
 - SFML 2.5.1
 
 Compiling the program:
