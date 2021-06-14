@@ -14,8 +14,8 @@ class DrawableModel
 		void Init(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture);
 		void DrawSprite();
 		void DrawShape(sf::RectangleShape shapeToDraw);
-
 		sf::Vector2f GetPosition();
 		void SetPosition(sf::Vector2f pos);
+		int GetSpriteSize();
 };
 #endif

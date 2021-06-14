@@ -34,3 +34,8 @@ void DrawableModel::SetPosition(sf::Vector2f pos)
 {
 	Position = pos;
 }
+
+int DrawableModel::GetSpriteSize()
+{
+	return sprite.getTexture()->getSize().x;
+}

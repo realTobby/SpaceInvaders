@@ -139,11 +139,11 @@ class Game
             // get all positions from enemies
             // get position from the shot
             // check if the shot position is in reach of enemy
-            bool isHit = enemyHandler.CheckForCollision(player.GetShotPosition());
-            if(isHit)
+            int isHitScoreMultipier = enemyHandler.CheckForCollision(player.GetShotPosition());
+            if(isHitScoreMultipier != -1)
             {
                 player.canShoot = true;
-                playerScore = playerScore + 10;
+                playerScore = playerScore + isHitScoreMultipier;
                 playerScoreText.setString("Score: " + to_string(playerScore));
             }
         }

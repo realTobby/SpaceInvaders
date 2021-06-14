@@ -44,7 +44,7 @@ void PlayerModel::Update()
 
     if(canShoot == false)
     {
-    	shotPosition.y = shotPosition.y - 1.6f;
+    	shotPosition.y = shotPosition.y - 2.5f;
         
         shotShape.setFillColor(sf::Color::Red);
         shotShape.setPosition(shotPosition);

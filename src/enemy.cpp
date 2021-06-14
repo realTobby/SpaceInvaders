@@ -12,13 +12,19 @@ EnemyModel::EnemyModel()
 }
 
 // Übergebe den Pointer zum RenderWindow
-void EnemyModel::Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture)
+void EnemyModel::Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture, int rowI)
 {
 	Init(ptrWindow, ptrTexture);
+	rowIndex = rowI;
 }
 
 void EnemyModel::Die()
 {
 	isAlive = false;
 	//cout << "Enemy is dead now!" << endl;
+}
+
+int EnemyModel::GetRowIndex()
+{
+	return rowIndex;
 }

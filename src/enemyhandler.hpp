@@ -12,15 +12,15 @@ class EnemyHandler
 		Starfield* ptrStarfield;
 		std::vector<EnemyModel> enemyList;
 		bool isMovingRight;
-		sf::Vector2f enemyAnchorPosition;
 		float enemySpeed;
 		sf::Texture enemyTexture;
 		int enemyCount;
 		int enemyRows;
+		void LowerEnemies();
 
 	public:
 		void Init(sf::RenderWindow *ptrWindow, Starfield *starsRef);
 		void Update();
-		bool CheckForCollision(sf::Vector2f shotPosition);
+		int CheckForCollision(sf::Vector2f shotPosition);
 };
 #endif

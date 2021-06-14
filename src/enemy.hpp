@@ -7,12 +7,14 @@ class EnemyModel : public DrawableModel
 {
 	private:
 		sf::Vector2f enemyAnchorPosition;
+		int rowIndex = 0;
 
 
 	public:
 		bool isAlive;
 		EnemyModel();
-		void Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture);
+		void Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture, int rowI);
 		void Die();
+		int GetRowIndex();
 };
 #endif
