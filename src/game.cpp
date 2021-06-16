@@ -26,6 +26,10 @@ class Game
         int playerScore;
         sf::Text playerScoreText;
 
+        sf::Texture hut1_texture;
+        sf::Sprite hutLeft_sprite;
+        sf::Sprite hutRight_sprite;
+
 
         void LoadTextures()
         {
@@ -39,6 +43,14 @@ class Game
                 // error...
             }
 
+            if (!hut1_texture.loadFromFile("data/sprites/hut1.png")) // Lädt die Textur ein
+            {
+                // error...
+            }
+
+            hutLeft_sprite.setTexture(hut1_texture);
+            hutRight_sprite.setTexture(hut1_texture);
+            hutRight_sprite.setTextureRect(sf::IntRect(24, 0, -24, 39));
 
         }
 
@@ -132,6 +144,30 @@ class Game
             CheckForCollisions();
             renderWindow.draw(uiBase);
             renderWindow.draw(playerScoreText);
+            
+
+
+            
+            // TODO: create own HutClass, and a HidingSpotHandler, transfer drawing code to that and implement dithering when shot
+            hutLeft_sprite.setPosition(sf::Vector2f(100,400));
+            hutRight_sprite.setPosition(sf::Vector2f(124,400)); 
+            renderWindow.draw(hutLeft_sprite);
+            renderWindow.draw(hutRight_sprite);
+
+            hutLeft_sprite.setPosition(sf::Vector2f(200,400));
+            hutRight_sprite.setPosition(sf::Vector2f(224,400)); 
+            renderWindow.draw(hutLeft_sprite);
+            renderWindow.draw(hutRight_sprite);
+
+            hutLeft_sprite.setPosition(sf::Vector2f(300,400));
+            hutRight_sprite.setPosition(sf::Vector2f(324,400)); 
+            renderWindow.draw(hutLeft_sprite);
+            renderWindow.draw(hutRight_sprite);
+
+            hutLeft_sprite.setPosition(sf::Vector2f(400,400));
+            hutRight_sprite.setPosition(sf::Vector2f(424,400)); 
+            renderWindow.draw(hutLeft_sprite);
+            renderWindow.draw(hutRight_sprite);
         }
 
         void CheckForCollisions()
