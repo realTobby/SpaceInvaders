@@ -17,14 +17,3 @@ void EnemyModel::Spawn(sf::RenderWindow *ptrWindow, sf::Texture *ptrTexture, int
 	Init(ptrWindow, ptrTexture);
 	rowIndex = rowI;
 }
-
-void EnemyModel::Die()
-{
-	isAlive = false;
-	//cout << "Enemy is dead now!" << endl;
-}
-
-int EnemyModel::GetRowIndex()
-{
-	return rowIndex;
-}
